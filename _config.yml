@@ -1,0 +1,33 @@
+title: jekyll-fun
+description: Jekyll Starter Kit
+url: ""
+author: "Rodrigo"
+twitter:
+  username: raguila8
+  card: summary
+logo: /assets/logo.png
+social:
+  name: Rodrigo Aguilar
+  links:
+    - https://twitter.com/raguila8
+
+permalink: /:title/
+excerpt_separator: <!--more-->
+
+include:
+  - _redirects
+exclude:
+  - /src
+  - /Gemfile
+  - /Gemfile.lock
+  - /package.json
+  - /yarn.lock
+  - /yarn-error.log
+  - /node_modules
+  - /tailwind.config.js
+  - /webpack.config.js
+  - /postcss.config.js
+  - /purgecss.config.js
+  - /Procfile.dev
+  - /Rakefile
+  - /README.md
