@@ -1,6 +1,8 @@
 title: jekyll-fun
 description: Jekyll Starter Kit
-url: "http://www.rodrigojaguilar.com/jekyll_fun"
+baseurl: "/jekyll_fun" # the subpath of your site, e.g. /blog
+url: "" # the base hostname & protocol for your site, e.g. http://example.com
+
 author: "Rodrigo"
 twitter:
   username: raguila8
