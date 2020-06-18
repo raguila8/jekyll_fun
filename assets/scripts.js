@@ -86,22 +86,167 @@
 /************************************************************************/
 /******/ ({
 
-/***/ "./_src/controllers sync recursive \\.js$":
-/*!*************************************!*\
-  !*** ./_src/controllers sync \.js$ ***!
-  \*************************************/
+/***/ "./_src/controllers sync recursive _controller\\.js$":
+/*!************************************************!*\
+  !*** ./_src/controllers sync _controller\.js$ ***!
+  \************************************************/
 /*! no static exports found */
-/***/ (function(module, exports) {
+/***/ (function(module, exports, __webpack_require__) {
 
-function webpackEmptyContext(req) {
-	var e = new Error("Cannot find module '" + req + "'");
-	e.code = 'MODULE_NOT_FOUND';
-	throw e;
+var map = {
+	"./dropdown_controller.js": "./_src/controllers/dropdown_controller.js"
+};
+
+
+function webpackContext(req) {
+	var id = webpackContextResolve(req);
+	return __webpack_require__(id);
 }
-webpackEmptyContext.keys = function() { return []; };
-webpackEmptyContext.resolve = webpackEmptyContext;
-module.exports = webpackEmptyContext;
-webpackEmptyContext.id = "./_src/controllers sync recursive \\.js$";
+function webpackContextResolve(req) {
+	if(!__webpack_require__.o(map, req)) {
+		var e = new Error("Cannot find module '" + req + "'");
+		e.code = 'MODULE_NOT_FOUND';
+		throw e;
+	}
+	return map[req];
+}
+webpackContext.keys = function webpackContextKeys() {
+	return Object.keys(map);
+};
+webpackContext.resolve = webpackContextResolve;
+module.exports = webpackContext;
+webpackContext.id = "./_src/controllers sync recursive _controller\\.js$";
+
+/***/ }),
+
+/***/ "./_src/controllers/dropdown_controller.js":
+/*!*************************************************!*\
+  !*** ./_src/controllers/dropdown_controller.js ***!
+  \*************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return _default; });
+/* harmony import */ var stimulus__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! stimulus */ "./node_modules/stimulus/index.js");
+function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+
+
+var _default =
+/*#__PURE__*/
+function (_Controller) {
+  _inherits(_default, _Controller);
+
+  function _default() {
+    _classCallCheck(this, _default);
+
+    return _possibleConstructorReturn(this, _getPrototypeOf(_default).apply(this, arguments));
+  }
+
+  _createClass(_default, [{
+    key: "connect",
+    value: function connect() {
+      //this.toggleClass = this.data.get('class') || 'hidden'
+      this.fromClasses = this.data.get('from').split(' ') || ['hidden'];
+      this.toClasses = this.data.get('to').split(' ');
+      this.enteringClasses = this.data.get('entering').split(' ');
+      this.leavingClasses = this.data.get('leaving').split(' ');
+      var self = this; // add from classes
+
+      this.fromClasses.forEach(function (klass) {
+        self.menuTarget.classList.add(klass);
+      }); // add entering transitions
+
+      this.enteringClasses.forEach(function (klass) {
+        self.menuTarget.classList.add(klass);
+      });
+      this.hidden = true; // Add correct margin right
+
+      if (this.data.get('custom')) {
+        this.menuTarget.style.marginRight = this.buttonTarget.offsetWidth / 2 + "px";
+      }
+    }
+  }, {
+    key: "toggle",
+    value: function toggle() {
+      var self = this;
+
+      if (this.hidden) {
+        // remove from classes
+        this.fromClasses.forEach(function (klass) {
+          self.menuTarget.classList.remove(klass);
+        }); // show to classes
+
+        this.toClasses.forEach(function (klass) {
+          self.menuTarget.classList.add(klass);
+        }); // remove entering classes
+
+        this.enteringClasses.forEach(function (klass) {
+          self.menuTarget.classList.remove(klass);
+        }); // add leaving transitions
+
+        this.leavingClasses.forEach(function (klass) {
+          self.menuTarget.classList.add(klass);
+        });
+        this.hidden = false;
+      } else {
+        this.toggleHide();
+      }
+    }
+  }, {
+    key: "hide",
+    value: function hide(event) {
+      if (this.element.contains(event.target) === false && !this.hidden) {
+        this.toggleHide();
+      }
+    }
+  }, {
+    key: "toggleHide",
+    value: function toggleHide() {
+      var self = this; // remove to classes
+
+      this.toClasses.forEach(function (klass) {
+        self.menuTarget.classList.remove(klass);
+      }); // show from classes
+
+      this.fromClasses.forEach(function (klass) {
+        self.menuTarget.classList.add(klass);
+      }); // remove leaving classes
+
+      this.leavingClasses.forEach(function (klass) {
+        self.menuTarget.classList.remove(klass);
+      }); // add entering transitions
+
+      this.enteringClasses.forEach(function (klass) {
+        self.menuTarget.classList.add(klass);
+      });
+      this.hidden = true;
+    }
+  }]);
+
+  return _default;
+}(stimulus__WEBPACK_IMPORTED_MODULE_0__["Controller"]);
+
+_default.targets = ['menu', 'button'];
+
 
 /***/ }),
 
@@ -126,7 +271,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var application = stimulus__WEBPACK_IMPORTED_MODULE_1__["Application"].start();
 
-var context = __webpack_require__("./_src/controllers sync recursive \\.js$");
+var context = __webpack_require__("./_src/controllers sync recursive _controller\\.js$");
 
 application.load(Object(stimulus_webpack_helpers__WEBPACK_IMPORTED_MODULE_2__["definitionsFromContext"])(context));
 turbolinks__WEBPACK_IMPORTED_MODULE_3___default.a.start();
