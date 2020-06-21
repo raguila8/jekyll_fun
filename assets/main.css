@@ -38988,6 +38988,22 @@ video {
   transition-delay: 1000ms;
 }
 
+.form-input.error, .form-textarea.error {
+  --border-opacity: 1;
+  border-color: #f8b4b4;
+  border-color: rgba(248, 180, 180, var(--border-opacity));
+  --text-opacity: 1;
+  color: #771d1d;
+  color: rgba(119, 29, 29, var(--text-opacity));
+}
+
+.form-input.error:focus, .form-textarea.error:focus {
+  --border-opacity: 1;
+  border-color: #f8b4b4;
+  border-color: rgba(248, 180, 180, var(--border-opacity));
+  box-shadow: 0 0 0 3px rgba(248, 180, 180, 0.45);
+}
+
 @media (min-width: 640px) {
   .sm\:space-y-0 > :not(template) ~ :not(template) {
     --space-y-reverse: 0;
@@ -191379,6 +191395,5 @@ video {
     transition-delay: 1000ms;
   }
 }
-
 
 /*# sourceMappingURL=main.css.map*/

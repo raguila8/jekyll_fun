@@ -32,12 +32,13 @@ module.exports = env => {
           ]
         },
         {
-          test: /\.css$/,
+          test: /\.s[ac]ss$/i,
           include: [path.resolve(__dirname, "_src/styles")],
           use: [
             { loader: MiniCssExtractPlugin.loader },
             { loader: "css-loader" },
-            { loader: "postcss-loader" }
+            { loader: "postcss-loader" },
+            { loader: "sass-loader" }
           ]
         }
       ]
