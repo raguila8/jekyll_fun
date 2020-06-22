@@ -39004,6 +39004,10 @@ video {
   box-shadow: 0 0 0 3px rgba(248, 180, 180, 0.45);
 }
 
+.form-input.error + div, .form-textarea.error + div {
+  display: flex;
+}
+
 @media (min-width: 640px) {
   .sm\:space-y-0 > :not(template) ~ :not(template) {
     --space-y-reverse: 0;

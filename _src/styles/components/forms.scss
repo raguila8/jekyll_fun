@@ -1,6 +1,11 @@
 .form-input.error, .form-textarea.error {
   @apply border-red-300 text-red-900;
+
   &:focus {
     @apply border-red-300 shadow-outline-red;
   }
+}
+
+.form-input.error + div, .form-textarea.error + div {
+  @apply flex;
 }

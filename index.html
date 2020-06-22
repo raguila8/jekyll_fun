@@ -466,7 +466,12 @@ layout: base
           <label for="first_name" class="block text-sm font-medium leading-5 text-gray-700">First name
           </label>
           <div class="mt-1 relative rounded-md shadow-sm">
-            <input id="first_name" class="form-input py-3 px-4 block w-full transition ease-in-out duration-150" required data-target='form.input' name='first_name' data-action='input->form#validateOnInputChange'/>
+            <input id="first_name" class="form-input pr-10 block w-full transition ease-in-out duration-150" required data-target='form.input' name='first_name' data-action='input->form#validateOnInput blur->form#validateOnBlur'/>
+            <div class="hidden absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none">
+              <svg class="h-5 w-5 text-red-500" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clip-rule="evenodd" />
+              </svg>
+            </div>
           </div>
         </div>
         <div>
@@ -478,21 +483,31 @@ layout: base
             </span>
           </div>
           <div class="mt-1 relative rounded-md shadow-sm">
-            <input id="last_name" class="form-input py-3 px-4 block w-full transition ease-in-out duration-150" name='last_name'/>
+            <input id="last_name" class="form-input block w-full transition ease-in-out duration-150" name='last_name'/>
           </div>
         </div>
         <div class="sm:col-span-2">
           <label for="email" class="block text-sm font-medium leading-5 text-gray-700" >Email
           </label>
           <div class="mt-1 relative rounded-md shadow-sm">
-            <input id="email" type="email" class="form-input py-3 px-4 block w-full transition ease-in-out duration-150" required data-target='form.input' name='email' data-action='input->form#validateOnInputChange'/>
+            <input id="email" type="email" class="form-input pr-10 block w-full transition ease-in-out duration-150" required data-target='form.input' name='email' data-action='input->form#validateOnInput blur->form#validateOnBlur'/>
+            <div class="hidden absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none">
+              <svg class="h-5 w-5 text-red-500" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clip-rule="evenodd" />
+              </svg>
+            </div>
           </div>
         </div>
         <div class="sm:col-span-2">
           <label for="message" class="block text-sm font-medium leading-5 text-gray-700">Message
           </label>
           <div class="mt-1 relative rounded-md shadow-sm">
-            <textarea id="message" rows="4" class="form-textarea py-3 px-4 block w-full transition ease-in-out duration-150" required data-target='form.input' name='message' data-action='input->form#validateOnInputChange'></textarea>
+            <textarea id="message" rows="4" class="form-textarea pr-10 block w-full transition ease-in-out duration-150" required data-target='form.input' name='message' data-action='input->form#validateOnInput blur->form#validateOnBlur'></textarea>
+            <div class="hidden absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none">
+              <svg class="h-5 w-5 text-red-500" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clip-rule="evenodd" />
+              </svg>
+            </div>
           </div>
         </div>
         <div class="sm:col-span-2">

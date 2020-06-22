@@ -40,6 +40,11 @@ module.exports = env => {
             { loader: "postcss-loader" },
             { loader: "sass-loader" }
           ]
+        },
+        {
+          test: /\.handlebars$/,
+          include: [path.resolve(__dirname, "_src/handlebars")],
+          loader: "handlebars-loader"
         }
       ]
     },

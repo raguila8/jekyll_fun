@@ -1,20 +1,30 @@
 import { Controller } from 'stimulus';
 
 export default class extends Controller {
-  static targets = ['form', 'input'];
+  static targets = ['form', 'input', 'alert'];
 
   initialize() {
     this.timer = 0
   }
 
-  validateOnInputChange(event) {
+  validateOnInput(event) {
     let field = event.currentTarget
     let self = this
-    if (this.data.has('failed')) {
+
+    field.setAttribute('changed', true)
+    if (field.hasAttribute('failed')) {
       clearTimeout (this.timer);
       this.timer = setTimeout(function() {
         self.validate(field)
-      }, 750)
+      }, 500)
+    }
+  }
+
+  validateOnBlur(event) {
+    let field = event.currentTarget
+
+    if (field.hasAttribute('changed')) {
+      this.validate(field)
     }
   }
 
@@ -24,8 +34,6 @@ export default class extends Controller {
 
     if (this.isValid) {
       this.ajax()
-    } else {
-      this.data.set('failed')
     }
   }
 
@@ -38,20 +46,31 @@ export default class extends Controller {
     xhr.setRequestHeader("Accept", "application/json");
     xhr.onreadystatechange = function() {
       if (xhr.readyState !== XMLHttpRequest.DONE) return;
+
       if (xhr.status === 200) {
-        self.success(xhr.response, xhr.responseType);
+        let alert_template = require('../handlebars/success_alert.handlebars')
+        let context = { heading: "Your message was successfully sent", text: "I'll get back to you soon." }
+        self.formTarget.insertAdjacentHTML('beforebegin', alert_template(context))
+        self.disconnect()
+        self.formTarget.remove()
       } else {
-        self.error(xhr.status, xhr.response, xhr.responseType);
+        if (self.hasAlertTarget) {
+          self.alertTarget.remove()
+        }
+        let alert_template = require('../handlebars/error_alert.handlebars')
+        let context = { heading: "Your message could not be sent", text: xhr.response }
+        self.formTarget.insertAdjacentHTML('afterbegin', alert_template(context))
       }
     };
+
     xhr.send(data);
   }
 
-  success() {
+  success(response, responseType) {
     
   }
 
-  error() {
+  error(status, response, responseType) {
     
   }
 
@@ -66,9 +85,11 @@ export default class extends Controller {
 
   validate(field) {
     let fieldName = field.getAttribute('name').replace(/_/g, ' ')
+    fieldName = fieldName.charAt(0).toUpperCase() + fieldName.slice(1)
 
     if (!field.disabled && !field.validity.valid) {
       this.isValid = false;
+      field.setAttribute('failed', true)
 
 	    if (field.validity.valueMissing) {
         this.showError(field, fieldName + " can't be blank");
